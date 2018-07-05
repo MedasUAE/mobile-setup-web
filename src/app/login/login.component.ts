@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder,FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
-import { User } from '../models/user';
 
 @Component({
     selector: 'app-login',
@@ -11,27 +10,67 @@ import { User } from '../models/user';
 })
 export class LoginComponent implements OnInit {
 
-    public myForm: FormGroup; // our model driven form
+    public form: FormGroup; // our model driven form
 
-    constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) { } // form builder simplify form initialization
+  unsubcribe: any
+
+  public fields: any[] = [
+    {
+      type: 'text',
+      name: 'mobile',
+      label: 'Mobile',
+      value: '',
+      required: true,
+    },
+    {
+      type: 'text',
+      name: 'password',
+      label: 'Password',
+      value: '',
+      required: true,
+    },
+  ];
+
+    constructor(private formBuilder: FormBuilder,private loginService: LoginService,private router: Router) {
+        this.form = new FormGroup({
+            fields: new FormControl(JSON.stringify(this.fields))
+          })
+          this.unsubcribe = this.form.valueChanges.subscribe((update) => {
+            console.log(update);
+            this.fields = JSON.parse(update.fields);
+          });
+     } // form builder simplify form initialization
 
     ngOnInit() {
-        this.myForm = this.formBuilder.group({
+        this.form = this.formBuilder.group({
             mobile: [''],
             password: ['', [<any>Validators.required, <any>Validators.minLength(3)]]
         });
     }
 
-    login(user: User, isValid: boolean) {
-        console.log(user);
-        this.loginService.login(user)
+    login(obj) {
+        this.loginService.login(obj)
             .then(isAuthenticated => {
+                localStorage.setItem('url', '/dashboard')
                 this.router.navigate(['/dashboard']);
             })
             .catch(() => {
                 console.log("failed");
 
             })
+    }
+
+    onUpload(e) {
+      console.log(e);
+  
+    }
+  
+    getFields() {
+      return this.fields;
+    }
+  
+    ngDistroy() {
+      this.unsubcribe();
     }
 
 }

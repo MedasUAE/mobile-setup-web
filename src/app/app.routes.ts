@@ -7,6 +7,10 @@ import { MainComponent } from './main/main.component';
 import { NavComponent } from './nav/nav.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { RegisterComponent } from './register/register.component';
+import { LayoutComponent } from './layout/layout.component';
+import { ClientComponent } from './client/client.component';
+
 
 
 
@@ -22,7 +26,10 @@ export const routes: Routes = [
     { path: 'main', component: MainComponent },
     { path: 'nav', component: NavComponent },
     { path: 'header', component: HeaderComponent },
-    { path: 'footer', component: FooterComponent }
+    { path: 'footer', component: FooterComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'layout/:client', component: LayoutComponent },
+    { path: 'client', component: ClientComponent }
 
 ];
 

@@ -1,0 +1,38 @@
+<div class="uk-overflow-auto">
+    <div class="uk-margin uk-align-right">
+        <form class="uk-search uk-search-default">
+            <a href="" class="uk-search-icon-flip" uk-search-icon></a>
+            <input class="uk-search-input" type="search" placeholder="Search...">
+        </form>
+    </div>
+    <table class="uk-table uk-table-small uk-table-divider">
+        <thead>
+            <div>
+            <tr>
+                <th item-width="90%">Name</th>
+                <th>Type</th>
+                <th>callnumber</th>
+                <th>action</th>
+            </tr>
+        </div>
+        </thead>
+        <tbody>
+            <div *ngFor="let item of items">
+                <tr>
+                    <td>{{item.name}}</td>
+                   <td> <button *ngIf="!item.layout.type" class="uk-button uk-button-primary" (click)="addLayout(item.name)">add</button></td>
+                   <td></td>
+                    <div *ngIf="item.layout.type">
+                    <td>{{item.layout.type}}</td>
+                    <td>{{item.layout.callnumber}}</td>
+                    <td><button  class="uk-button uk-button-primary" (click)="editLayout(item.name)">edit</button></td>
+                    <td><button  class="uk-button uk-button-secondary" (click)="deleteLayout(item.name)">delete</button></td>
+                </div>
+                </tr> 
+            </div>
+        </tbody>
+    </table>
+    </div>
+
+    
+    

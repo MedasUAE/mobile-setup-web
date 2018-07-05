@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,9 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  rootPage: any;
+  
   constructor(private router: Router) {
-    (localStorage.getItem('auth')) ? this.router.navigate(['/dashboard']) : this.router.navigate(['/login'])
+      const url = localStorage.getItem('url');
+      (localStorage.getItem('auth')) ? this.router.navigate([url]) : this.router.navigate(['/login'])
 
   }
 }

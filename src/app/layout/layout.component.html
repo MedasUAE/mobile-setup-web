@@ -1,0 +1,49 @@
+<div *ngIf="layoutForm">
+    <form [formGroup]="layoutForm" class="uk-form-horizontal uk-margin-large" (ngSubmit)="updateLayout()">
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-horizontal-select">Type</label>
+            <div class="uk-form-controls">
+                <select class="uk-select" id="form-horizontal-select" formControlName="type" required>
+                    <option value="tiles">Tiles</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label" for="form-horizontal-text">Call</label>
+            <div class="uk-form-controls">
+                <input class="uk-input" id="form-horizontal-text" type="text" formControlName="callnumber" required>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <div class="uk-form-label">Button1</div>
+            <div class="uk-form-controls uk-form-controls-text">
+                <label class="uk-form-label uk-margin-top" for="form-horizontal-text">Name_en</label>
+                <div class="uk-form-controls uk-margin-top">
+                    <input class="uk-input" id="form-horizontal-text" type="text" formControlName="name_en" placeholder="name_en">
+                </div>
+                <label class="uk-form-label uk-margin-top" for="form-horizontal-text">DataUrl</label>
+                <div class="uk-form-controls uk-margin-top">
+                    <input class="uk-input" id="form-horizontal-text" type="text" formControlName="dataUrl" placeholder="dataUrl">
+                </div>
+                <label class="uk-form-label uk-margin-top" for="form-horizontal-text">Icon</label>
+                <div class="uk-form-controls uk-margin-top">
+                    <input class="uk-input" id="form-horizontal-text" type="text" formControlName="icon" placeholder="icon">
+                </div>
+                <label class="uk-form-label uk-margin-top" for="form-horizontal-text">Modal</label>
+                <div class="uk-form-controls uk-margin-top">
+                    <input class="uk-input" id="form-horizontal-text" type="text" formControlName="modal" placeholder="modal">
+                </div>
+                <label class="uk-form-label uk-margin-top" for="form-horizontal-text">Avatar</label>
+                <div class="uk-form-controls uk-margin-top">
+                    <input class="uk-input" id="form-horizontal-text" type="text" formControlName="avatar" placeholder="avatar">
+                </div>
+                <label class="uk-form-label uk-margin-top" for="form-horizontal-text">Action</label>
+                <div class="uk-form-controls uk-margin-top">
+                    <input class="uk-input" id="form-horizontal-text" type="text" formControlName="action" placeholder="action">
+                </div>
+                <button type="submit" class="uk-button uk-button-primary uk-button" [disabled]="!layoutForm.valid">save</button>
+            </div>
+        </div>
+    </form>
+</div>
